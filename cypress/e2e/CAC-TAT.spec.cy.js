@@ -151,4 +151,17 @@ describe('Central de Atendimento ao Cliente TAT', function() {
       .should("have.value", "blog");
   });
   //#endregion
+
+  //#region aula 4
+  it('marca o tipo de atendimento "Feedback', function() {
+    cy.get('input[value="feedback"]')
+      .check();
+  })
+
+  it('1 EX - marca cada tipo de atendimento', function() {
+    cy.get('input[type="radio"]').each(($el) => {
+      cy.wrap($el).check();
+    })
+  })
+  //#endregion
 })

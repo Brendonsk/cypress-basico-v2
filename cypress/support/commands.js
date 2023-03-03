@@ -24,6 +24,7 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
+//aula 2
 Cypress.Commands.add('fillMandatoryFieldsAndSubmit', (nome, sobrenome, email, ajuda) => {
     cy.title().should('eq', 'Central de Atendimento ao Cliente TAT');
 
