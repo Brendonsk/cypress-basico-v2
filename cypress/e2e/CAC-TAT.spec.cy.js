@@ -196,6 +196,33 @@ describe('Central de Atendimento ao Cliente TAT', function() {
 
     cy.get('.error')
       .should("be.visible");  
-  })
+  });
+  //#endregion
+
+  //#region aula 6
+  it('seleciona um arquivo da pasta fixtures', function() {
+    cy.get('input[type="file"]')
+      .selectFile('cypress/fixtures/example.json')
+      .should(function($input) {
+        expect($input[0].files[0].name).to.equal('example.json')
+      });
+  });
+
+  it('1 EX - seleciona um arquivo simulando um drag-and-drop', function() {
+    cy.get('input[type="file"]')
+      .selectFile('cypress/fixtures/example.json', {action: 'drag-drop'})
+      .should(function($input) {
+        expect($input[0].files[0].name).to.equal('example.json')
+      });
+  });
+
+  it('2 EX - seleciona um arquivo utilizando uma fixture para a qual foi dada um alias', function() {
+    cy.fixture('example.json').as('sampleFile')
+    cy.get('input[type="file"]')
+      .selectFile('@sampleFile')
+      .should(function($input) {
+        expect($input[0].files[0].name).to.equal('example.json')
+      });
+  });
   //#endregion
 })
