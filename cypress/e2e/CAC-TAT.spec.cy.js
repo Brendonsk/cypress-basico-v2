@@ -6,13 +6,13 @@ describe('Central de Atendimento ao Cliente TAT', function() {
   })
 
   //#region aula 1
-  it('verifica o título da aplicação', function() {
+  it('1 - Verifica o título da aplicação', function() {
     cy.title().should('contain', 'Central de Atendimento ao Cliente TAT');
   })
   //#endregion
 
   //#region aula 2
-  it('1 EX - preenche os campos obrigatórios e envia o formulário', function() {
+  it('2 - Preenche os campos obrigatórios e envia o formulário', function() {
     cy.get('#firstName').type('Sorawo');
     cy.get('#lastName').type('Kamikoshi');
     cy.get('#email').type('skyfish@gmail.com');
@@ -37,7 +37,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
       .should("be.visible");
   })
 
-  it('2 EX - exibe mensagem de erro ao submeter o formulário com um email com formatação inválida', function() {
+  it('2.2 EX - Exibe mensagem de erro ao submeter o formulário com um email com formatação inválida', function() {
     cy.get('#firstName').type('Sorawo');
     cy.get('#lastName').type('Kamikoshi');
     cy.get('#email').type('skyfish');
@@ -61,13 +61,13 @@ describe('Central de Atendimento ao Cliente TAT', function() {
       .should("be.visible");
   });
 
-  it('3 EX - digitar caracteres não numéricos no campo telefone não funciona', function() {
+  it('2.3 EX - Digitar caracteres não numéricos no campo telefone não funciona', function() {
     cy.get('#phone')
       .type('kunekune')
       .should("be.empty");
   });
 
-  it('4 EX - exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', function() {
+  it('2.4 EX - Exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', function() {
     cy.get('#firstName').type('Sorawo');
     cy.get('#lastName').type('Kamikoshi');
     cy.get('#email').type('skyfish@gmail.com');
@@ -91,7 +91,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
       .should("be.visible");
   });
 
-  it('5 EX - preenche e limpa os campos nome, sobrenome, email e telefone', function() {
+  it('2.5 EX - Preenche e limpa os campos nome, sobrenome, email e telefone', function() {
     cy.get('#firstName')
       .type('Sorawo')
       .should('have.value', 'Sorawo')
@@ -117,7 +117,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
       .should('be.empty');
   });
 
-  it('6 EX - exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios', function() {
+  it('2.6 EX - Exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios', function() {
     cy.contains('button','Enviar').click();
 
 
@@ -125,7 +125,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
       .should("be.visible");
   });
 
-  it('7 EX - envia o formulário com sucesso usando um comando customizado', function() {
+  it('2.7 EX - Envia o formulário com sucesso usando um comando customizado', function() {
     cy.fillMandatoryFieldsAndSubmit('Sorawo', 'Kamikoshi', 'skyfish@gmail.com', '🐟');
     cy.get('.success')
       .should("be.visible");
@@ -133,19 +133,19 @@ describe('Central de Atendimento ao Cliente TAT', function() {
   //#endregion
 
   //#region aula 3
-  it('seleciona um produto (YouTube) por seu texto', function() {
+  it('3 - Seleciona um produto (YouTube) por seu texto', function() {
     cy.get('#product')
       .select("YouTube")
       .should("have.value", "youtube");
   });
 
-  it('1 EX - seleciona um produto (Mentoria) por seu valor (value)', function() {
+  it('3.1 EX - Seleciona um produto (Mentoria) por seu valor (value)', function() {
     cy.get('#product')
       .select("mentoria")
       .should("have.value", "mentoria");
   });
 
-  it('2 EX - seleciona um produto (Blog) por seu índice', function() {
+  it('3.2 EX - Seleciona um produto (Blog) por seu índice', function() {
     cy.get('#product')
       .select(1)
       .should("have.value", "blog");
@@ -153,12 +153,12 @@ describe('Central de Atendimento ao Cliente TAT', function() {
   //#endregion
 
   //#region aula 4
-  it('marca o tipo de atendimento "Feedback', function() {
+  it('4 - Marca o tipo de atendimento "Feedback', function() {
     cy.get('input[value="feedback"]')
       .check();
   })
 
-  it('1 EX - marca cada tipo de atendimento', function() {
+  it('4.1 EX - Marca cada tipo de atendimento', function() {
     cy.get('input[type="radio"]').each(($el) => {
       cy.wrap($el).check();
     })
@@ -166,7 +166,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
   //#endregion
 
   //#region aula 5
-  it('marca ambos checkboxes, depois desmarca o último', function() {
+  it('5 - Marca ambos checkboxes, depois desmarca o último', function() {
     cy.get('input[type="checkbox"]')
       .each(($el) => {
         cy.wrap($el)
@@ -178,7 +178,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
       .should("not.be.checked");
   })
 
-  it('1 EX - exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', function() {
+  it('5.1 EX - Exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', function() {
     cy.get('#firstName').type('Sorawo');
     cy.get('#lastName').type('Kamikoshi');
     cy.get('#email').type('skyfish@gmail.com');
@@ -200,7 +200,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
   //#endregion
 
   //#region aula 6
-  it('seleciona um arquivo da pasta fixtures', function() {
+  it('6 - Seleciona um arquivo da pasta fixtures', function() {
     cy.get('input[type="file"]')
       .selectFile('cypress/fixtures/example.json')
       .should(function($input) {
@@ -208,7 +208,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
       });
   });
 
-  it('1 EX - seleciona um arquivo simulando um drag-and-drop', function() {
+  it('6.1 EX - Seleciona um arquivo simulando um drag-and-drop', function() {
     cy.get('input[type="file"]')
       .selectFile('cypress/fixtures/example.json', {action: 'drag-drop'})
       .should(function($input) {
@@ -216,13 +216,28 @@ describe('Central de Atendimento ao Cliente TAT', function() {
       });
   });
 
-  it('2 EX - seleciona um arquivo utilizando uma fixture para a qual foi dada um alias', function() {
-    cy.fixture('example.json').as('sampleFile')
+  it('6.2 EX - Seleciona um arquivo utilizando uma fixture para a qual foi dada um alias', function() {
+    cy.fixture('example.json').as('sampleFile');
     cy.get('input[type="file"]')
       .selectFile('@sampleFile')
       .should(function($input) {
         expect($input[0].files[0].name).to.equal('example.json')
       });
+  });
+  //#endregion
+
+  //#region aula 7
+  it('7 - Verifica que a política de privacidade abre em outra aba sem a necessidade de um clique', function() {
+    cy.get('#privacy a')
+      .should('have.attr', 'target', '_blank');
+  });
+
+  it('7.1 EX - Acessa a página da política de privacidade removendo o target e então clicando no link', function() {
+    cy.contains('Política de Privacidade')
+      .invoke('removeAttr', 'target')
+      .click()
+        .title()
+        .should('eq', 'Central de Atendimento ao Cliente TAT - Política de privacidade');
   });
   //#endregion
 })
