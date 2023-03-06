@@ -240,4 +240,41 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         .should('eq', 'Central de Atendimento ao Cliente TAT - Política de privacidade');
   });
   //#endregion
+
+  //#region aula 11
+  Cypress._.times(4, function(n) {
+    it(`11.1 EX - repeat ${n+1}`, function() {
+      cy.log(`listen`);
+    });
+  });
+
+  it('11.2 EX - Teste que força mensagens de sucesso e erro', function() {
+    cy.get('.success')
+      .invoke('show')
+      .should('be.visible')
+      .should('contain','Mensagem enviada com sucesso.')
+      .invoke('hide')
+      .should('not.be.visible');
+
+    cy.get('.error')
+      .invoke('show')
+      .should('be.visible')
+      .should('contain','Valide os campos obrigatórios!')
+      .invoke('hide')
+      .should('not.be.visible');
+  })
+
+  it('11.3 EX - Preenche a area de texto usando o comando invoke', function() {
+    cy.get('textarea')
+      .invoke('val','🐟')
+      .should('have.value','🐟');
+  });
+
+  it('11.4 EX - Faz uma requisição HTTP', function() {
+    cy.request('https://cac-tat.s3.eu-central-1.amazonaws.com/index.html').then(function(response) {
+      expect(response.status).to.equal(200)
+      expect(response.body).to.include('CAC TAT');
+    });
+  })
+  //#endregion
 })
